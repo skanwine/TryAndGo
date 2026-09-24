@@ -3,56 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2號候選內閣「Try and Go」 </title>
+    <title>2號候選內閣「Tryandgo」</title>
     <style>
-        :root {
-            --primary-color: #2C3E50;
-            --accent-color: #E67E22;
-            --bg-color: #F9F9F9;
-            --text-color: #333;
-            --white: #FFF;
-        }
         body {
             font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
             line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
+            color: #333;
             margin: 0;
             padding: 0;
+            background-color: #F9F9F9;
         }
         .container {
             max-width: 800px;
             margin: 40px auto;
-            padding: 20px;
-            background: var(--white);
+            background: #FFF;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             border-radius: 10px;
+            overflow: hidden;
         }
         header {
             text-align: center;
-            padding-bottom: 20px;
-            border-bottom: 2px solid var(--accent-color);
+            padding: 30px 20px;
         }
         .logo {
             max-width: 150px;
             margin-bottom: 20px;
         }
         h1 {
-            color: var(--primary-color);
+            color: #2C3E50;
             margin: 10px 0;
         }
-        .slogan {
-            font-size: 1.2em;
-            color: var(--accent-color);
-            font-weight: bold;
-        }
         section {
-            margin: 30px 0;
+            padding: 30px;
         }
         h2 {
-            color: var(--primary-color);
-            border-left: 4px solid var(--accent-color);
-            padding-left: 10px;
+            color: #2C3E50;
+            margin-top: 0;
+            text-align: center;
         }
         .member-grid {
             display: grid;
@@ -61,27 +48,27 @@
             margin-top: 15px;
         }
         .member-item {
-            background: #F2F4F4;
+            background: rgba(255, 255, 255, 0.6);
             padding: 10px;
             border-radius: 5px;
             text-align: center;
         }
         .member-role {
             font-weight: bold;
-            color: var(--primary-color);
+            color: #2C3E50;
         }
-        .sponsor-link {
+        .btn-link {
             display: inline-block;
             padding: 10px 20px;
-            background-color: var(--accent-color);
-            color: var(--white);
+            background-color: #2C3E50;
+            color: #FFF;
             text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
-            transition: background 0.3s;
+            margin-top: 15px;
         }
-        .sponsor-link:hover {
-            background-color: #D35400;
+        ul {
+            padding-left: 20px;
         }
     </style>
 </head>
@@ -90,20 +77,19 @@
 <div class="container">
     <header>
         <!-- 請將 logo.png 替換為您的 Logo 檔案名稱 -->
-        <img src="logo.png.JPG" alt="Try and Go Logo" class="logo">
-        <h1>2號候選內閣「Try and Go」</h1>
-        <div class="slogan">敢於嘗試 坐言起行</div>
+        <img src="logo.png.JPG" alt="Tryandgo Logo" class="logo">
+        <h1>2號候選內閣「Tryandgo」</h1>
     </header>
 
-    <section>
+    <section style="background-color: #FC9ABF;">
         <h2>關於我們</h2>
-        <p>我們是2號候選內閣「Try and Go」——Try and Go 諧音三角形的英文「Triangle」。我們希望學校、學生和學生會三者一條心，三者都是不可或缺的一部分。而我們的成員大多在學校擔任重要職責，具備基本的實戰經驗。</p>
-        <p>關於「Try and Go」這個名字，Try 代表敢於嘗試、不怕失敗的態度；Go 代表坐言起行，把想法變成現實的動力。</p>
-        <p>校園內有很多想法，卻沒有人敢嘗試；很多聲音並非無人聆聽，而是無人敢多走一步。我們「Try and Go」就是要將「想了才算」改為「試了再說」，把舊模式換作新作風。</p>
-        <p>希望「Try and Go」可以作為學生的領頭羊，與大家一起把每一個「如果」變成「嘗試」，再把每一個「嘗試」變成「做到」。</p>
+        <p>我們是2號候選內閣「Tryandgo」——Try and Go 諧音三角形的英文「Triangle」。我們希望學校、學生和學生會三者一條心，三者都是不可或缺的一部分。而我們的成員大多在學校擔任重要職責，具備基本的實戰經驗。</p>
+        <p>關於「Tryandgo」這個名字，Try 代表敢於嘗試、不怕失敗的態度；Go 代表坐言起行，把想法變成現實的動力。</p>
+        <p>校園內有很多想法，卻沒有人敢嘗試；很多聲音並非無人聆聽，而是無人敢多走一步。我們「Tryandgo」就是要將「想了才算」改為「試了再說」，把舊模式換作新作風。</p>
+        <p>希望「Tryandgo」可以作為學生的領頭羊，與大家一起把每一個「如果」變成「嘗試」，再把每一個「嘗試」變成「做到」。</p>
     </section>
 
-    <section>
+    <section style="background-color: #69CEF0;">
         <h2>學生會成員</h2>
         <div class="member-grid">
             <div class="member-item"><div class="member-role">會長</div><div>5B 謝心玥</div></div>
@@ -118,9 +104,31 @@
         </div>
     </section>
 
-    <section style="text-align: center;">
-        <h2>贊助商戶</h2>
-        <a href="https://docs.google.com/spreadsheets/d/109VN24CR3EQN0CtgD6rIXDw2Xt00GNufCrO75EX98aY/edit?usp=drivesdk" target="_blank" class="sponsor-link">查看贊助商戶名單</a>
+    <section style="background-color: #FEFC80; text-align: center;">
+        <h2>Sponsors</h2>
+        <p>我們有多於200間商戶優惠，包括購物、課堂、服裝、工作坊等不同類別的優惠。當中更包括獨家優惠。</p>
+        <a href="https://docs.google.com/spreadsheets/d/109VN24CR3EQN0CtgD6rIXDw2Xt00GNufCrO75EX98aY/edit?usp=drivesdk" target="_blank" class="btn-link">查看贊助商戶名單</a>
+    </section>
+
+    <section style="background-color: #EEB7FF;">
+        <h2>學生會聯校</h2>
+        <p>我們與多間學校學生會有聯校合作，爭取在當選後舉辦不同的聯校活動。包括：</p>
+        <ul>
+            <li>Christmas ball</li>
+            <li>Oral模擬練習</li>
+            <li>music festival</li>
+            <li>夏季舞會</li>
+            <li>交換mock paper</li>
+            <li>Sport Day</li>
+        </ul>
+        <div style="text-align: center;">
+            <a href="https://docs.google.com/spreadsheets/d/109VN24CR3EQN0Ctgt00GNufCrO75EX98aY/edit?usp=drivesdk" target="_blank" class="btn-link">查看聯校合作詳情</a>
+        </div>
+    </section>
+
+    <section style="background-color: #BEFFD2; text-align: center;">
+        <h2>聯絡方式</h2>
+        <p>Kristy: <a href="mailto:kristy@gmail.com">kristy@gmail.com</a></p>
     </section>
 </div>
 
