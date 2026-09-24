@@ -10,20 +10,20 @@
             line-height: 1.6;
             color: #333;
             margin: 0;
-            padding: 0;
-            background-color: #F9F9F9;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
         .container {
             max-width: 800px;
-            margin: 40px auto;
-            background: #FFF;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border-radius: 10px;
-            overflow: hidden;
+            margin: 0 auto;
         }
         header {
             text-align: center;
-            padding: 30px 20px;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
         .logo {
             max-width: 150px;
@@ -34,24 +34,34 @@
             margin: 10px 0;
         }
         section {
-            padding: 30px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        section:hover {
+            transform: translateY(-5px);
         }
         h2 {
             color: #2C3E50;
             margin-top: 0;
             text-align: center;
+            font-size: 1.8em;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
         }
         .member-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 15px;
-            margin-top: 15px;
+            margin-top: 20px;
         }
         .member-item {
-            background: rgba(255, 255, 255, 0.6);
-            padding: 10px;
-            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 12px;
             text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
         .member-role {
             font-weight: bold;
@@ -59,16 +69,24 @@
         }
         .btn-link {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 12px 30px;
             background-color: #2C3E50;
             color: #FFF;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 25px;
             font-weight: bold;
             margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        .btn-link:hover {
+            background-color: #34495E;
+            transform: scale(1.05);
         }
         ul {
             padding-left: 20px;
+            display: inline-block;
+            text-align: left;
         }
     </style>
 </head>
@@ -77,19 +95,18 @@
 <div class="container">
     <header>
         <!-- 請將 logo.png 替換為您的 Logo 檔案名稱 -->
-        <img src="logo.png.WEBP" alt="Tryandgo Logo" class="logo">
+        <img src="logo.png" alt="Tryandgo Logo" class="logo">
         <h1>2號候選內閣「Tryandgo」</h1>
     </header>
 
-    <section style="background-color: #FC9ABF;">
+    <section style="background: linear-gradient(135deg, #FC9ABF 0%, #FFC2DB 100%);">
         <h2>關於我們</h2>
-        <p>我們是2號候選內閣「Tryandgo」——Try and Go 諧音三角形的英文「Triangle」。我們希望學校、學生和學生會三者一條心，三者都是不可或缺的一部分。而我們的成員大多在學校擔任重要職責，具備基本的實戰經驗。</p>
-        <p>關於「Tryandgo」這個名字，Try 代表敢於嘗試、不怕失敗的態度；Go 代表坐言起行，把想法變成現實的動力。</p>
-        <p>校園內有很多想法，卻沒有人敢嘗試；很多聲音並非無人聆聽，而是無人敢多走一步。我們「Tryandgo」就是要將「想了才算」改為「試了再說」，把舊模式換作新作風。</p>
-        <p>希望「Tryandgo」可以作為學生的領頭羊，與大家一起把每一個「如果」變成「嘗試」，再把每一個「嘗試」變成「做到」。</p>
+        <p>我們是2號候選內閣「Tryandgo」——Try and Go 諧音三角形的英文「Triangle」。</p>
+        <p>我們希望學校、學生和學生會三者一條心，三者都是不可或缺的一部分。</p>
+        <p>而我們的成員大多在學校擔任重要職責，具備基本的實戰經驗。</p>
     </section>
 
-    <section style="background-color: #69CEF0;">
+    <section style="background: linear-gradient(135deg, #69CEF0 0%, #9BE2FA 100%);">
         <h2>學生會成員</h2>
         <div class="member-grid">
             <div class="member-item"><div class="member-role">會長</div><div>5B 謝心玥</div></div>
@@ -104,13 +121,13 @@
         </div>
     </section>
 
-    <section style="background-color: #FEFC80; text-align: center;">
+    <section style="background: linear-gradient(135deg, #FEFC80 0%, #FFFFA6 100%); text-align: center;">
         <h2>Sponsors</h2>
         <p>我們有多於200間商戶優惠，包括購物、課堂、服裝、工作坊等不同類別的優惠。當中更包括獨家優惠。</p>
         <a href="https://docs.google.com/spreadsheets/d/109VN24CR3EQN0CtgD6rIXDw2Xt00GNufCrO75EX98aY/edit?usp=drivesdk" target="_blank" class="btn-link">查看贊助商戶名單</a>
     </section>
 
-    <section style="background-color: #EEB7FF;">
+    <section style="background: linear-gradient(135deg, #EEB7FF 0%, #F6D6FF 100%); text-align: center;">
         <h2>學生會聯校</h2>
         <p>我們與多間學校學生會有聯校合作，爭取在當選後舉辦不同的聯校活動。包括：</p>
         <ul>
@@ -121,14 +138,13 @@
             <li>交換mock paper</li>
             <li>Sport Day</li>
         </ul>
-        <div style="text-align: center;">
-            <a href="https://docs.google.com/spreadsheets/d/109VN24CR3EQN0Ctgt00GNufCrO75EX98aY/edit?usp=drivesdk" target="_blank" class="btn-link">查看聯校合作詳情</a>
-        </div>
+        <br>
+        <a href="https://docs.google.com/spreadsheets/d/109VN24CR3EQN0Ctgt00GNufCrO75EX98aY/edit?usp=drivesdk" target="_blank" class="btn-link">查看聯校合作詳情</a>
     </section>
 
-    <section style="background-color: #BEFFD2; text-align: center;">
+    <section style="background: linear-gradient(135deg, #BEFFD2 0%, #E0FFE8 100%); text-align: center;">
         <h2>聯絡方式</h2>
-        <p>Kristy: <a href="mailto:kristy@gmail.com">kristy@gmail.com</a></p>
+        <p>電郵 Triandgo: <a href="mailto:tryandgosu@gmail.com" style="color: #2C3E50; font-weight: bold;">kristy@gmail.com</a></p>
     </section>
 </div>
 
