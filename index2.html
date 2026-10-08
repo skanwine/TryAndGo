@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2號候選內閣 Tryandgo</title>
+    <!-- 引入 Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- 引入 FontAwesome 圖示 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2C3E50;
+            --accent: #3498db;
+        }
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            /* 柔和的淺色漸層背景 */
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            overflow-x: hidden;
+        }
+        
+        /* 動態背景：漂浮三角形 */
+        .bg-animation {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1; pointer-events: none;
+        }
+        .triangle {
+            position: absolute;
+            width: 0; height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 34.6px solid rgba(44, 62, 80, 0.04);
+            animation: float 15s infinite linear;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg) scale(1); opacity: 1; }
+            100% { transform: translateY(-20vh) rotate(360deg) scale(1.5); opacity: 0; }
+        }
+
+        .container { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+        
+        /* 區塊共用設計 (保留毛玻璃邊框與陰影) */
+        header, section {
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Header 保持白色高亮 */
+        header { 
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            text-align: center; 
+            padding: 50px 20px; 
+        }
+        
+        /* 各區塊專屬漸層主色調 */
+        .sec-about { background: linear-gradient(135deg, #FDB6C1 0%, #FFD9E0 100%); }
+        .sec-members { background: linear-gradient(135deg, #D4D3FF 0%, #EBEBFF 100%); }
+        .sec-sponsors { background: linear-gradient(135deg, #FEFC80 0%, #FFFFA6 100%); }
+        .sec-goals { background: linear-gradient(135deg, #ADE7FF 0%, #D6F3FF 100%); }
+        .sec-events { background: linear-gradient(135deg, #FFDCB5 0%, #FFEED6 100%); }
+        .sec-support { background: linear-gradient(135deg, #EEB7FF 0%, #F6D6FF 100%); }
+        .sec-contact { background: linear-gradient(135deg, #BEFFD2 0%, #E0FFE8 100%); }
+
+        .logo { max-width: 160px; margin-bottom: 20px; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1)); transition: transform 0.3s; }
+        .logo:hover { transform: scale(1.05) rotate(5deg); }
+        h1 { color: var(--primary); margin: 10px 0; font-weight: 900; font-size: 2.5em; letter-spacing: 2px; }
+        
+        /* 標題底線動畫 */
+        h2 {
+            color: var(--primary);
+            margin-top: 0;
+            text-align: center;
+            font-size: 2em;
+            font-weight: 900;
+            position: relative;
+            padding-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.6);
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 60px; height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        section:hover h2::after { width: 120px; background: rgba(44, 62, 80, 0.5); }
+
+        /* 成員網格與卡片微互動 */
+        .member-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .member-item {
+            background: rgba(255, 255, 255, 0.85); /* 半透明白色底，讓背景色透出一點點 */
+            backdrop-filter: blur(5px);
+            padding: 25px 15px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.9);
+        }
+        .member-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 1);
+        }
+        .member-icon { font-size: 2em; color: #a1a0ff; margin-bottom: 10px; transition: transform 0.3s; }
+        .member-item:hover .member-icon { transform: scale(1.2); color: var(--primary); }
+        .member-role { font-weight: 900; color: var(--primary); font-size: 1.1em; margin-bottom: 8px; }
+        
+        /* 清單美化 */
+        ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            text-align: left;
+            margin-top: 20px;
+        }
+        ul li {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(5px);
+            padding: 12px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            display: flex;
+            align-items: center;
+            transition: transform 0.2s, background 0.3s;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+        ul li:hover { transform: translateX(8px); background: rgba(255, 255, 255, 1); }
+        ul li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--primary);
+            opacity: 0.7;
+            margin-right: 12px;
+        }
+
+        /* 按鈕特效 */
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 35px;
+            background: var(--primary);
+            color: #FFF;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            margin-top: 25px;
+            box-shadow: 0 10px 20px rgba(44, 62, 80, 0.2);
+            transition: all 0.3s ease;
+            gap: 10px;
+        }
+        .btn-link:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 25px rgba(44, 62, 80, 0.3);
+            background: #1a252f;
+        }
+
+        /* 滾動動畫 (Scroll Reveal) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 交錯動畫 (Staggered Children) */
+        .stagger-container .stagger-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .stagger-container.active .stagger-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<!-- 動態背景 -->
+<div class="bg-animation" id="bg-animation"></div>
+
+<div class="container">
+    <header class="reveal">
+        <img src="logo.JPG" alt="Tryandgo Logo" class="logo" onerror="this.src='https://via.placeholder.com/150?text=Tryandgo'">
+        <h1>2號候選內閣 Tryandgo</h1>
+    </header>
+
+    <section class="sec-about reveal">
+        <h2><i class="fa-solid fa-users"></i> 關於我們</h2>
+        <div style="text-align: center; font-size: 1.1em; padding: 0 20px;">
+            <p>我們是2號候選內閣「<strong>Tryandgo</strong>」—— Try and Go 諧音三角形的英文「Triangle」。</p>
+            <p>我們希望<span style="color:#e74c3c; font-weight:bold;">學校</span>、<span style="color:#EBF048; font-weight:bold;">學生</span>和<span style="color:#3498db; font-weight:bold;">學生會</span>三者一條心，三者都是不可或缺的一部分。</p>
+            <p>而我們的成員大多在學校擔任重要職責，具備豐富的實戰經驗。</p>
+        </div>
+    </section>
+
+     <section class="sec-members reveal stagger-container">
+        <h2><i class="fa-solid fa-id-badge"></i> 學生會成員</h2>
+        <div class="member-grid">
+            <div class="member-item stagger-item"><i class="fa-solid fa-crown member-icon"></i><div class="member-role">會長</div><div>5B 謝心玥</div></div>
+            <div class="member-item stagger-item"><i class="fa-solid fa-user-tie member-icon"></i><div class="member-role">內務副會長</div><div>5C 許迪軒</div></div>
+            <div class="member-item stagger-item"><i class="fa-solid fa-handshake member-icon"></i><div class="member-role">外務副會長</div><div>5B 阮芷晴</div></div>
+            <div class="member-item stagger-item"><i class="fa-solid fa-palette member-icon"></i><div class="member-role">美術</div><div>4D 鄧汶欣<br>5C 尹靖婷</div></div>
+            <div class="member-item stagger-item"><i class="fa-solid fa-coins member-icon"></i><div class="member-role">財政</div><div>4B 黃熺烔<br>4B 陳逸善</div></div>
+            <div class="member-item stagger-item"><i class="fa-solid fa-gamepad member-icon"></i><div class="member-role">活動統籌及康樂</div><div>4C 盧曉潼<br>5C 伍泳兒</div></div>
+            <div class="member-item stagger-item"><i class="fa-solid fa-bullhorn member-icon"></i><div class="member-role">宣傳</div><div>5C 陳聲淼<br>4B 楊蔚祺<br>5B 梁淇棋</div></div>
+            <div class="member-item stagger-item"><i class="fa-solid fa-file-signature member-icon"></i><div class="member-role">文書</div><div>5A 蔡卓熙<br>5B 陳梓樂</div></div>
+            <div class="member-item stagger-item"><i class="fa-solid fa-gift member-icon"></i><div class="member-role">福利</div><div>5D 張蔚晴<br>5B 陳梓灝</div></div>
+        </div>
+    </section>
+
+    <section class="sec-sponsors reveal" style="text-align: center;">
+        <h2><i class="fa-solid fa-store"></i> Sponsors</h2>
+        <p>我們有多於 <strong>200間</strong> 商戶優惠，包括購物、課堂、服裝、工作坊等不同類別的優惠。<br>當中更包括獨家優惠！</p>
+        <a href="https://docs.google.com/spreadsheets/d/14aBOCoWOPwyJqbQx4Sx6uXWKUtAivIZDpkjTXxGWo9U/edit?usp=drivesdk" target="_blank" class="btn-link">
+            <i class="fa-solid fa-list"></i> 查看贊助商戶名單
+        </a>
+    </section>
+
+    <section class="sec-goals reveal">
+        <h2><i class="fa-solid fa-bullseye"></i> 爭取項目</h2>
+        <ul>
+            <li>Lunch Time可提早進入課室</li>
+            <li>提供抹手紙</li>
+            <li>一樓校務處外增加枱凳</li>
+            <li>校隊訓練當日可穿着PE衫</li>
+            <li>女廁提供衛生巾</li>
+            <li>提供防曬及防蚊用品</li>
+            <li>增加禮堂外枱凳供Lunch Time時使用</li>
+            <li>提供計數機供學生借用</li>
+            <li>中六Last Day及畢業禮延長留校時間</li>
+            <li>文具展</li>
+            <li>陸運會提供水洗貼紙</li>
+        </ul>
+    </section>
+
+    <section class="sec-events reveal">
+        <h2><i class="fa-solid fa-calendar-star"></i> 校內活動</h2>
+        <ul>
+            <li>全方位多元化發展活動日</li>
+            <li>萬聖節鬼屋</li>
+            <li>廚藝爭霸賽</li>
+            <li>Talent Show</li>
+            <li>Christmas Party</li>
+            <li>投資大賽</li>
+        </ul>
+    </section>
+
+    <section class="sec-support reveal" style="text-align: center;">
+        <h2><i class="fa-solid fa-school"></i> Supporting Schools</h2>
+        <p>我們與多間學校學生會有聯校合作，爭取在當選後舉辦不同的聯校活動。包括：</p>
+        <ul style="text-align: left; display: inline-grid; width: 100%;">
+            <li>Christmas Ball</li>
+            <li>F6模擬交流</li>
+            <li>Oral模擬練習</li>
+            <li>Music Festival</li>
+            <li>夏季舞會</li>
+            <li>交換Mock Paper</li>
+            <li>Sport Day</li>
+            <li>爆旋陀螺比賽</li>
+        </ul>
+        <br>
+        <a href="https://docs.google.com/spreadsheets/d/1ABvwH1Ks70TCz1GJocPCnKhDtnQRqOwkfL40qPtb5SE/edit?usp=drivesdk" target="_blank" class="btn-link">
+            <i class="fa-solid fa-link"></i> 查看詳情
+        </a>
+    </section>
+
+    <section class="sec-contact reveal" style="text-align: center;">
+        <h2><i class="fa-solid fa-envelope"></i> 聯絡方式</h2>
+        <p style="font-size: 1.2em; margin-top: 20px;">
+            <a href="mailto:tryandgosu@gmail.com" style="color: var(--primary); font-weight: bold; text-decoration: none; padding: 12px 25px; background: rgba(255,255,255,0.8); border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: all 0.3s; display: inline-block;">
+                <i class="fa-solid fa-paper-plane"></i> tryandgosu@gmail.com
+            </a>
+        </p>
+    </section>
+</div>
+
+<script>
+    // 1. 動態生成背景三角形 (呼應 Tryandgo / Triangle 主題)
+    const bgContainer = document.getElementById('bg-animation');
+    for(let i = 0; i < 15; i++) {
+        let tri = document.createElement('div');
+        tri.classList.add('triangle');
+        tri.style.left = Math.random() * 100 + 'vw';
+        tri.style.animationDuration = (Math.random() * 15 + 10) + 's';
+        tri.style.animationDelay = (Math.random() * 5) + 's';
+        tri.style.opacity = Math.random() * 0.6 + 0.1;
+        
+        let size = Math.random() * 30 + 10;
+        tri.style.borderLeft = size + 'px solid transparent';
+        tri.style.borderRight = size + 'px solid transparent';
+        tri.style.borderBottom = (size * 1.732) + 'px solid rgba(44, 62, 80, 0.05)';
+        bgContainer.appendChild(tri);
+    }
+
+    // 2. 滾動監聽 (Intersection Observer) + 交錯動畫
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                
+                // 如果是成員區塊，設定子元素的交錯延遲
+                if(entry.target.classList.contains('stagger-container')) {
+                    const items = entry.target.querySelectorAll('.stagger-item');
+                    items.forEach((item, index) => {
+                        item.style.transitionDelay = (index * 0.1) + 's';
+                    });
+                }
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(section => {
+        observer.observe(section);
+    });
+</script>
+</body>
+</html>
