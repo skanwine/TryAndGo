@@ -114,7 +114,7 @@
             border-radius: 16px;
             text-align: center;
             box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s ease-out;
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(255,255,255,0.9);
@@ -172,7 +172,7 @@
             font-weight: bold;
             margin-top: 25px;
             box-shadow: 0 10px 20px rgba(44, 62, 80, 0.2);
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             gap: 10px;
         }
         .btn-link:hover {
@@ -181,22 +181,22 @@
             background: #1a252f;
         }
 
-        /* 滾動動畫 (Scroll Reveal) */
+        /* 滾動動畫 (Scroll Reveal) - 加快速度與減少位移 */
         .reveal {
             opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+            transform: translateY(30px);
+            transition: all 0.4s ease-out;
         }
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
         
-        /* 交錯動畫 (Staggered Children) */
+        /* 交錯動畫 (Staggered Children) - 加快速度 */
         .stagger-container .stagger-item {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s cubic-bezier(0.5, 0, 0, 1);
+            transform: translateY(20px);
+            transition: all 0.3s ease-out;
         }
         .stagger-container.active .stagger-item {
             opacity: 1;
@@ -213,13 +213,14 @@
     <header class="reveal">
         <img src="logo.JPG" alt="Tryandgo Logo" class="logo" onerror="this.src='https://via.placeholder.com/150?text=Tryandgo'">
         <h1>2號候選內閣 Tryandgo</h1>
+        <p style="color: #7f8c8d; font-size: 1.2em; font-weight: bold;"><i class="fa-solid fa-play"></i> Try and Go!</p>
     </header>
 
     <section class="sec-about reveal">
         <h2><i class="fa-solid fa-users"></i> 關於我們</h2>
         <div style="text-align: center; font-size: 1.1em; padding: 0 20px;">
             <p>我們是2號候選內閣「<strong>Tryandgo</strong>」—— Try and Go 諧音三角形的英文「Triangle」。</p>
-            <p>我們希望<span style="color:#e74c3c; font-weight:bold;">學校</span>、<span style="color:#EBF048; font-weight:bold;">學生</span>和<span style="color:#3498db; font-weight:bold;">學生會</span>三者一條心，三者都是不可或缺的一部分。</p>
+            <p>我們希望<span style="color:#e74c3c; font-weight:bold;">學校</span>、<span style="color:#3498db; font-weight:bold;">學生</span>和<span style="color:#f1c40f; font-weight:bold;">學生會</span>三者一條心，三者都是不可或缺的一部分。</p>
             <p>而我們的成員大多在學校擔任重要職責，具備豐富的實戰經驗。</p>
         </div>
     </section>
@@ -298,7 +299,7 @@
     <section class="sec-contact reveal" style="text-align: center;">
         <h2><i class="fa-solid fa-envelope"></i> 聯絡方式</h2>
         <p style="font-size: 1.2em; margin-top: 20px;">
-            <a href="mailto:tryandgosu@gmail.com" style="color: var(--primary); font-weight: bold; text-decoration: none; padding: 12px 25px; background: rgba(255,255,255,0.8); border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: all 0.3s; display: inline-block;">
+            <a href="mailto:tryandgosu@gmail.com" style="color: var(--primary); font-weight: bold; text-decoration: none; padding: 12px 25px; background: rgba(255,255,255,0.8); border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: all 0.2s; display: inline-block;">
                 <i class="fa-solid fa-paper-plane"></i> tryandgosu@gmail.com
             </a>
         </p>
@@ -327,7 +328,7 @@
     const observerOptions = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.15
+        threshold: 0.05 // 降低門檻，更快觸發
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
@@ -335,11 +336,11 @@
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
                 
-                // 如果是成員區塊，設定子元素的交錯延遲
+                // 如果是成員區塊，設定子元素的交錯延遲 (加快到 0.05s)
                 if(entry.target.classList.contains('stagger-container')) {
                     const items = entry.target.querySelectorAll('.stagger-item');
                     items.forEach((item, index) => {
-                        item.style.transitionDelay = (index * 0.1) + 's';
+                        item.style.transitionDelay = (index * 0.05) + 's';
                     });
                 }
             }
