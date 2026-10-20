@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2號候選內閣 Tryandgo</title>
+    <meta name="description" content="2號候選內閣 Tryandgo。學校、學生、學生會三者一條心。查看成員、爭取項目、校內活動、聯校合作及贊助商戶。">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="2號候選內閣 Tryandgo">
+    <meta property="og:description" content="學校、學生、學生會三者一條心。查看成員、爭取項目、校內活動、聯校合作及贊助商戶。">
+    <meta property="og:image" content="logo.JPG">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="2號候選內閣 Tryandgo">
+    <meta name="twitter:description" content="學校、學生、學生會三者一條心。查看成員、爭取項目、校內活動、聯校合作及贊助商戶。">
+    <meta name="twitter:image" content="logo.JPG">
+    <script>
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+            document.documentElement.classList.add('js-anim');
+        }
+    </script>
     <!-- 引入 Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
     <!-- 引入 FontAwesome 圖示 -->
@@ -181,26 +196,37 @@
             background: #1a252f;
         }
 
-        /* 滾動動畫 (Scroll Reveal) - 加快速度與減少位移 */
-        .reveal {
+        /* 內容預設可見。只在允許動畫、且腳本加上 js-anim 時才先隱藏再淡入。 */
+        .reveal,
+        .stagger-container .stagger-item {
+            opacity: 1;
+            transform: none;
+        }
+        html.js-anim .reveal {
             opacity: 0;
             transform: translateY(40px);
-            transition: all 0.6s ease-out;
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-        .reveal.active {
+        html.js-anim .reveal.active {
             opacity: 1;
-            transform: translateY(0);
+            transform: none;
         }
-        
-        /* 交錯動畫 (Staggered Children) - 加快速度 */
-        .stagger-container .stagger-item {
+        html.js-anim .stagger-container .stagger-item {
             opacity: 0;
             transform: translateY(20px);
-            transition: all 0.4s ease-out;
+            transition: opacity 0.4s ease-out, transform 0.4s ease-out;
         }
-        .stagger-container.active .stagger-item {
+        html.js-anim .stagger-container.active .stagger-item {
             opacity: 1;
-            transform: translateY(0);
+            transform: none;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html.js-anim .reveal,
+            html.js-anim .stagger-container .stagger-item {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
         }
     </style>
 </head>
@@ -211,15 +237,18 @@
 
 <div class="container">
     <header class="reveal">
-        <img src="logo.JPG" alt="Tryandgo Logo" class="logo" onerror="this.src='https://via.placeholder.com/150?text=Tryandgo'">
+        <picture>
+            <source srcset="logo.webp" type="image/webp">
+            <img src="logo.JPG" alt="Tryandgo Logo" class="logo">
+        </picture>
         <h1>2號候選內閣 Tryandgo</h1>
     </header>
 
     <section class="sec-about reveal">
         <h2><i class="fa-solid fa-users"></i> 關於我們</h2>
-        <div style="text-align: center; font-size: 1.1em; padding: 0 5px;">
+        <div style="text-align: center; font-size: 1.1em; padding: 0 20px;">
             <p>我們是2號候選內閣「<strong>Tryandgo</strong>」—— Try and Go 諧音三角形的英文「Triangle」。</p>
-            <p>我們希望<span style="color:#e74c3c; font-weight:bold;">學校</span>、<span style="color:#F5F227; font-weight:bold;">學生</span>和<span style="color:#3498db; font-weight:bold;">學生會</span>三者一條心，三者都是不可或缺的一部分。</p>
+            <p>我們希望<span style="color:#922b21; font-weight:bold;">學校</span>、<span style="color:#1b4f72; font-weight:bold;">學生</span>和<span style="color:#5c4300; font-weight:bold;">學生會</span>三者一條心，三者都是不可或缺的一部分。</p>
             <p>而我們的成員大多在學校擔任重要職責，具備豐富的實戰經驗。</p>
         </div>
     </section>
@@ -242,7 +271,7 @@
     <section class="sec-sponsors reveal" style="text-align: center;">
         <h2><i class="fa-solid fa-store"></i> Sponsors</h2>
         <p>我們有多於 <strong>200間</strong> 商戶優惠，包括購物、課堂、服裝、工作坊等不同類別的優惠。<br>當中更包括獨家優惠！</p>
-        <a href="https://docs.google.com/spreadsheets/d/14aBOCoWOPwyJqbQx4Sx6uXWKUtAivIZDpkjTXxGWo9U/edit?usp=drivesdk" target="_blank" class="btn-link">
+        <a href="https://docs.google.com/spreadsheets/d/14aBOCoWOPwyJqbQx4Sx6uXWKUtAivIZDpkjTXxGWo9U/preview" target="_blank" rel="noopener noreferrer" class="btn-link">
             <i class="fa-solid fa-list"></i> 查看贊助商戶名單
         </a>
     </section>
@@ -265,7 +294,7 @@
     </section>
 
     <section class="sec-events reveal">
-        <h2><i class="fa-solid fa-school"></i> 校內活動</h2>
+        <h2><i class="fa-solid fa-calendar-days"></i> 校內活動</h2>
         <ul>
             <li>全方位多元化發展活動日</li>
             <li>萬聖節鬼屋</li>
@@ -277,7 +306,7 @@
     </section>
 
     <section class="sec-support reveal" style="text-align: center;">
-        <h2><i class="fa-solid fa-handshake-angle"></i> Supporting Schools</h2>
+        <h2><i class="fa-solid fa-school"></i> Supporting Schools</h2>
         <p>我們與多間學校學生會有聯校合作，爭取在當選後舉辦不同的聯校活動。包括：</p>
         <ul style="text-align: left; display: inline-grid; width: 100%;">
             <li>Christmas Ball</li>
@@ -290,7 +319,7 @@
             <li>爆旋陀螺比賽</li>
         </ul>
         <br>
-        <a href="https://docs.google.com/spreadsheets/d/1ABvwH1Ks70TCz1GJocPCnKhDtnQRqOwkfL40qPtb5SE/edit?usp=drivesdk" target="_blank" class="btn-link">
+        <a href="https://docs.google.com/spreadsheets/d/1ABvwH1Ks70TCz1GJocPCnKhDtnQRqOwkfL40qPtb5SE/preview" target="_blank" rel="noopener noreferrer" class="btn-link">
             <i class="fa-solid fa-link"></i> 查看詳情
         </a>
     </section>
@@ -306,49 +335,47 @@
 </div>
 
 <script>
-    // 1. 動態生成背景三角形 (呼應 Tryandgo / Triangle 主題)
+(function () {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const bgContainer = document.getElementById('bg-animation');
-    for(let i = 0; i < 15; i++) {
-        let tri = document.createElement('div');
-        tri.classList.add('triangle');
-        tri.style.left = Math.random() * 100 + 'vw';
-        tri.style.animationDuration = (Math.random() * 15 + 10) + 's';
-        tri.style.animationDelay = (Math.random() * 5) + 's';
-        tri.style.opacity = Math.random() * 0.6 + 0.1;
-        
-        let size = Math.random() * 30 + 10;
-        tri.style.borderLeft = size + 'px solid transparent';
-        tri.style.borderRight = size + 'px solid transparent';
-        tri.style.borderBottom = (size * 1.732) + 'px solid rgba(44, 62, 80, 0.05)';
-        bgContainer.appendChild(tri);
+
+    if (!reduceMotion && bgContainer) {
+        for (let i = 0; i < 15; i++) {
+            const tri = document.createElement('div');
+            tri.classList.add('triangle');
+            tri.style.left = Math.random() * 100 + 'vw';
+            tri.style.animationDuration = (Math.random() * 15 + 10) + 's';
+            tri.style.animationDelay = (Math.random() * 5) + 's';
+            tri.style.opacity = Math.random() * 0.6 + 0.1;
+
+            const size = Math.random() * 30 + 10;
+            tri.style.borderLeft = size + 'px solid transparent';
+            tri.style.borderRight = size + 'px solid transparent';
+            tri.style.borderBottom = (size * 1.732) + 'px solid rgba(44, 62, 80, 0.05)';
+            bgContainer.appendChild(tri);
+        }
     }
 
-    // 2. 滾動監聽 (Intersection Observer) + 交錯動畫
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.05 // 降低門檻，更快觸發
-    };
+    if (!document.documentElement.classList.contains('js-anim')) {
+        return;
+    }
 
-    const observer = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                
-                // 如果是成員區塊，設定子元素的交錯延遲 (加快到 0.05s)
-                if(entry.target.classList.contains('stagger-container')) {
-                    const items = entry.target.querySelectorAll('.stagger-item');
-                    items.forEach((item, index) => {
-                        item.style.transitionDelay = (index * 0.05) + 's';
-                    });
-                }
+            if (!entry.isIntersecting) {
+                return;
+            }
+            entry.target.classList.add('active');
+            if (entry.target.classList.contains('stagger-container')) {
+                entry.target.querySelectorAll('.stagger-item').forEach((item, index) => {
+                    item.style.transitionDelay = (index * 0.05) + 's';
+                });
             }
         });
-    }, observerOptions);
+    }, { root: null, rootMargin: '0px', threshold: 0.05 });
 
-    document.querySelectorAll('.reveal').forEach(section => {
-        observer.observe(section);
-    });
+    document.querySelectorAll('.reveal').forEach(section => observer.observe(section));
+})();
 </script>
 </body>
 </html>
